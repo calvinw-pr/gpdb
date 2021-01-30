@@ -62,7 +62,7 @@
 #include "utils/lsyscache.h"
 #include "utils/snapmgr.h"
 
-
+extern int insertParquetRecord(TupleTableSlot *slot, char *relname);
 /*
  * Verify that the tuples to be produced by INSERT or UPDATE match the
  * target relation's rowtype
@@ -541,7 +541,7 @@ ExecInsert(TupleTableSlot *parentslot,
 			HeapTuple tuple;
 
 			Insist(rel_is_heap);
-
+         insertParquetRecord(slot,resultRelInfo->ri_RelationDesc->rd_rel->relname.data);
 			/*
 			 * get the heap tuple out of the tuple table slot, making sure we have a
 			 * writable copy. (heap_insert() will scribble on the tuple)

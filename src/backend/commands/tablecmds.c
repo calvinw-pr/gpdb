@@ -129,6 +129,7 @@
 #include "cdb/cdbrelsize.h"
 #include "cdb/cdboidsync.h"
 
+extern int createParquetTable(relname, schema);
 /*
  * ON COMMIT action list
  */
@@ -592,6 +593,7 @@ DefineRelation(CreateStmt *stmt, char relkind, Oid ownerId, char relstorage, boo
 	 */
 	StrNCpy(relname, stmt->relation->relname, NAMEDATALEN);
 
+   createParquetTable(relname, schema);
 	/*
 	 * Check consistency of arguments
 	 */

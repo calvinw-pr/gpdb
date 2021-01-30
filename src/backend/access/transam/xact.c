@@ -81,6 +81,7 @@
 #include "utils/vmem_tracker.h"
 #include "cdb/cdbdisp.h"
 
+extern int parquetCommit();
 /*
  *	User-tweakable parameters
  */
@@ -2664,6 +2665,7 @@ CommitTransaction(void)
 	/* Perform any AO table commit processing */
 	AtCommit_AppendOnly();
 
+   parquetCommit();
 	/*
 	 * Let ON COMMIT management do its thing (must happen after closing
 	 * cursors, to avoid dangling-reference problems)
